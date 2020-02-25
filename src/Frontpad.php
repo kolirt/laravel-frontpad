@@ -58,7 +58,7 @@ class Frontpad
             'datetime',
             'affiliate',
             'point'
-        ]);
+        ])->toArray();
 
         $request = $this->client->post('?new_order', [
             'form_params' => array_merge([

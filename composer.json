@@ -8,7 +8,7 @@
     "frontpad"
   ],
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     {
       "name": "Asan Abdurakhmanov",
@@ -16,7 +16,7 @@
     }
   ],
   "require": {
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "> 6.0.0"
   },
   "autoload": {
     "files": [

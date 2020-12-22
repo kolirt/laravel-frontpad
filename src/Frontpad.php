@@ -32,34 +32,6 @@ class Frontpad
      */
     public function newOrder(array $data)
     {
-        $data = collect($data)->only([
-            'product',
-            'product_kol',
-            'product_mod',
-            'product_price',
-            'score',
-            'sale',
-            'sale_amount',
-            'card',
-            'street',
-            'home',
-            'pod',
-            'et',
-            'apart',
-            'phone',
-            'mail',
-            'descr',
-            'name',
-            'pay',
-            'certificate',
-            'person',
-            'tags',
-            'channel',
-            'datetime',
-            'affiliate',
-            'point'
-        ])->toArray();
-
         $request = $this->client->post('?new_order', [
             'form_params' => array_merge([
                 'secret' => config('frontpad.secret')
@@ -69,44 +41,6 @@ class Frontpad
         $response = collect($this->prepareResponse($request));
 
         return collect($response)->only(['order_id', 'order_number'])->toArray();
-    }
-
-    /**
-     * Get order status by client phone.
-     *
-     * @param string $clientPhone
-     * @return string
-     * @throws Exception
-     */
-    public function getOrderStatusByClientPhone(string $clientPhone)
-    {
-        $request = $this->client->post('?get_status', [
-            'form_params' => [
-                'secret'       => config('frontpad.secret'),
-                'client_phone' => $clientPhone
-            ]
-        ]);
-        $response = collect($this->prepareResponse($request));
-        return $response->status;
-    }
-
-    /**
-     * Get order status by order id.
-     *
-     * @param string $orderId
-     * @return string
-     * @throws Exception
-     */
-    public function getOrderStatusByOrderId(string $orderId)
-    {
-        $request = $this->client->post('?get_status', [
-            'form_params' => [
-                'secret'   => config('frontpad.secret'),
-                'order_id' => $orderId
-            ]
-        ]);
-        $response = collect($this->prepareResponse($request));
-        return $response->status;
     }
 
     /**
